@@ -1,8 +1,7 @@
-from ftp_config import *
+from test.ftp_config import *
 from datetime import datetime
 ftp.cwd('testovaya')
 ftp.encoding = 'utf-8'
-
 
 formats = ['txt', 'mp4']
 
@@ -47,7 +46,7 @@ def test():
     count += 1
 
     # Отправляет файлы на сервер в корневую папку
-    jpg_path = 'test/1_copy.jpg'
+    jpg_path = '1_copy.jpg'
     ftp_upload(jpg_path)
     count += 1
 
@@ -64,7 +63,7 @@ def test():
     count += 1
 
     # Проблема с кодировкой,  русские имена записываются как Р­С‚Рѕ РјРѕРё РіСЂРёР±С‹.mp4
-    path_video = 'test/Это мои грибы.mp4'
+    path_video = 'Это мои грибы.mp4'
     ftp_upload(path_video)
     count += 1
 
