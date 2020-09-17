@@ -37,7 +37,7 @@ def test():
 
 
     # Отправляет файлы на сервер в корневую папку
-    path = 'test/1.txt'
+    path = 'test/test/1.txt'
     ftp_upload(path)
     count += 1
 
@@ -46,15 +46,15 @@ def test():
     count += 1
 
     # Отправляет файлы на сервер в корневую папку
-    jpg_path = '1_copy.jpg'
+    jpg_path = 'test/1_copy.jpg'
     ftp_upload(jpg_path)
     count += 1
 
-    path = 'ticketSonja.png'
+    path = 'test/ticketSonja.png'
     ftp_upload(path)
     count += 1
 
-    path_music = 'Dense - Echoes from San Ibé.mp3'
+    path_music = 'test/Dense - Echoes from San Ibé.mp3'
     ftp_upload(path_music)
     count += 1
 
@@ -63,11 +63,11 @@ def test():
     count += 1
 
     # Проблема с кодировкой,  русские имена записываются как Р­С‚Рѕ РјРѕРё РіСЂРёР±С‹.mp4
-    path_video = 'Это мои грибы.mp4'
+    path_video = 'test/Это мои грибы.mp4'
     ftp_upload(path_video)
     count += 1
 
-    path_video = 'It`s my mushrooms.mp4'
+    path_video = 'test/It`s my mushrooms.mp4'
     ftp_upload(path_video)
     count += 1
 

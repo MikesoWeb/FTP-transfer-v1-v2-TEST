@@ -1,7 +1,6 @@
 import time
-import zipfile
+from zipfile import ZipFile
 import shutil
-import glob
 
 from ftp_config import ftp, formats
 from datetime import datetime
@@ -46,18 +45,20 @@ def ftp_upload(path_to_dir):
         # заменил os.path.join
         full_path_file = Path(path_to_dir, path_file)
         # проверка если папка, то вычесть из списка общего
-        if os.path.isdir(full_path_file):
+        if Path(full_path_file).is_dir():
             onlyfiles = len(onlyfiles) - 1
 
         else:
             count += 1
 
         # создается архив
-        z = zipfile.ZipFile(f'{create_dir}.zip', 'w')
-        for root, dirs, files in os.walk(out_dir):
-            for file in files:
-                z.write(os.path.join(root, file))
-        z.close()
+        # z = ZipFile(f'{create_dir}.zip', 'w')
+        # for root, dirs, files in os.walk(out_dir):
+        #     for file in files:
+        #         z.write(os.path.join(root, file))
+        # z.close()
+
+        shutil.make_archive(f'{create_dir}', 'zip', out_dir)
 
 
         with open(full_path_file, 'rb') as fobj:
@@ -145,13 +146,17 @@ def ftp_upload(path_to_dir):
 
         for i in os.listdir(path_archive):
             full_path_archive = Path('archive', i)
+            size_archive = os.stat(full_path_archive).st_size
 
             # передаем файл архива на сервер
             with open(full_path_archive, 'rb') as fobj:
+
                 print(f'Отправляю архив {i} на сервер')
+                print(f'Размер передаваемого архива: {size_archive} kb')
                 ftp.storbinary('STOR ' + i, fobj)
                 print(f'Файл {i} отправлен на сервер')
                 time.sleep(1)
+
 
             # очищаем папку с архивами
             os.unlink(full_path_archive)

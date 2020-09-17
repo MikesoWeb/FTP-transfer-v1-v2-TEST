@@ -25,11 +25,11 @@ formats = ['.txt', '.html', '.docx', '.htm']
 from ftplib import FTP_TLS
 ftp=FTP_TLS()
 # ftp.set_debuglevel(2)
-ftp.connect('klionp9p.beget.tech', 21)
+ftp.connect('klionp9p.beget.tech', 21, timeout=100)
 ftp.sendcmd('USER klionp9p_lesson')
-ftp.sendcmd('PASS 2zFh%Ek3')
+ftp.sendcmd('PASS 3M1l&Mha')
 ftp.cwd('klionp9p.beget.tech')
-ftp.dir()
+# ftp.dir()
 # ftp.retrlines('LIST')
 
 
